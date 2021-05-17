@@ -1,7 +1,7 @@
 """Main app/routing file for Twitoff"""
 
 from flask import Flask, render_template
-from .models import DB, User
+from .models import DB, User, Tweets
 
 
 def create_app():
@@ -22,7 +22,7 @@ def create_app():
         DB.drop_all()
         DB.create_all()
         users = User.query.all()
-        return render_template("base.html", title="Home", users=users)
+        return render_template("base.html", title="Home", users=users)   
 
     @app.route('/populate')
     def populate():
