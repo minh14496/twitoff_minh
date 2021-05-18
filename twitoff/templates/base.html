@@ -21,13 +21,12 @@
 
     <article class="flex two" style="padding: 3em 1em;">
       {% block content %}
-      <h2>Users</h2>
+      <h2>Tweets</h2> 
       {% for user in users %}
-      <p>{{ user.username }}</p>
+      <h3>{{ user.username }}</h3>
+      {% for i in range(3) %}
+      <h3>{{ user.tweets[i].text }}</h3>
       {% endfor %}
-      <h3>Tweets</h3>
-      {% for tweet in tweets %}
-      <p>{{ tweet.text }}</p>
       {% endfor %}
       {% endblock %}
     </article>

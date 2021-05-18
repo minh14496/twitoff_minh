@@ -15,14 +15,16 @@ def create_app():
     @app.route('/')
     def root():
         users = User.query.all()
-        return render_template("base.html", title="Home", users=users)
+        tweets = Tweet.query.all()
+        return render_template("base.html", title="Home", users=users, tweets=tweets)
 
     @app.route('/reset')
     def reset():
         DB.drop_all()
         DB.create_all()
         users = User.query.all()
-        return render_template("base.html", title="Home", users=users)   
+        tweets = Tweet.query.all()
+        return render_template("base.html", title="Home", users=users, tweets=tweets)  
 
     @app.route('/populate')
     def populate():
