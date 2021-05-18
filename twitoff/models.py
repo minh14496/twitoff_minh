@@ -11,6 +11,8 @@ class User(DB.Model):
     id = DB.Column(DB.BigInteger, primary_key=True)
     # username column for 'user'
     username = DB.Column(DB.String, nullable=False)
+     # stores most recent tweet_id
+    newest_tweet_id = DB.Column(DB.BigInteger)
 
     def __repr__(self): # this is called representation of a class
         return f"<User: {self.username}>"
@@ -22,6 +24,8 @@ class Tweet(DB.Model):
     id = DB.Column(DB.BigInteger, primary_key=True)
     # text column for 'tweet'
     text = DB.Column(DB.Unicode(300))
+    # stores numbers that represents tweets
+    vect = DB.Column(DB.PickleType, nullable=False)
     # user_id foreign key column for 'tweet'
     user_id = DB.Column(DB.BigInteger, DB.ForeignKey(
         'user.id'), nullable=False)
