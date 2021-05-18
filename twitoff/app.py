@@ -28,7 +28,7 @@ def create_app():
 
     @app.route('/populate')
     def populate():
-        names = ["elonmusk", "jackblack"]
+        names = ["Elon Musk", "Jack Black"]
         messages = ["Go For Bitcoin", "Laugh", "Go for Doge", "Laugh more"
         ,"Shinu coin this time", "Laugh more and more"]
         insert_users(names)
