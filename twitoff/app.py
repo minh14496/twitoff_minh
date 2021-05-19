@@ -1,6 +1,6 @@
 """Main app/routing file for Twitoff"""
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from .models import DB, User, Tweet
 from os import getenv
 from .twitter import add_or_update_user
@@ -14,17 +14,27 @@ def create_app():
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     DB.init_app(app)
 
-    @app.route('/')
+    @app.route('/', methods=["GET", "POST"])
     def root():
         # tweets = Tweet.query.all()
+        if request.method == "POST":
+            username = request.form.get("user")
+            add_or_update_user(username)
         return render_template("base.html", title="Home", users=User.query.all())
 
-    @app.route('/reset')
+    @app.route('/reset', methods=["GET", "POST"])
     def reset():
         DB.drop_all()
         DB.create_all()
         # tweets = Tweet.query.all()
         return render_template("base.html", title="Home", users=User.query.all())  
+
+    @app.route('/user/<name>')
+    def user_name(name):
+        # a simple version of pulling user from local DB
+        user = User.query.filter_by(username=f'{name}').first()
+        return render_template("user.html", title="Tweets", user=user)
+
 
     @app.route('/populate')
     def populate():
