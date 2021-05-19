@@ -11,6 +11,7 @@ python-dotenv = "*"
 requests = "*"
 tweepy = "*"
 spacy = "*"
+scikit-learn = "*"
 
 [dev-packages]
 
