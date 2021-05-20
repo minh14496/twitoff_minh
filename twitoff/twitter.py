@@ -7,6 +7,7 @@ from os import getenv
 from .models import DB, Tweet, User
 import tweepy
 import spacy
+import pickle
 
 
 # Authenticates us and allow us to user the Twitter Authentication
@@ -17,7 +18,9 @@ api = tweepy.API(TWITTER_AUTH)
 
 
 # NLP model
-nlp = spacy.load("my_model")
+# nlp = spacy.load("my_model") <--- this is without pickle serialization
+nlp_file = open('NLP_spacy', 'rb')
+nlp = pickle.load(nlp_file)
 
 
 # Creating function to vectorize tweet
