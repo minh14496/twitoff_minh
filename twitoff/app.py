@@ -30,7 +30,8 @@ def create_app():
     def compare():
         # getting users and hypothetical tweet from client
         user0, user1 = sorted(
-            [request.values['user0'], request.values['user1']])
+            [request.values['user0'], request.values['user1']]
+            )
         hypo_tweet_text = request.values["tweet_text"]
         # stops clients from comparing same user
         if user0 == user1:
@@ -52,7 +53,7 @@ def create_app():
             if request.method == "POST":
                 add_or_update_user(name)
                 message = f"User {name} successfully added!"
-            tweets = User.query.filter(User.username == name).one().tweets
+            tweets = User.query.filter(User.username == name).first().tweets
         except Exception as e:
             message = f"Error adding {name}: {e}"
             tweets = []

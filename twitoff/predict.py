@@ -1,11 +1,11 @@
 """Handles DS prediction model"""
 import numpy as np
-from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
 from .models import User
 from .twitter import vectorize_tweet
 def predict_user(user0_name, user1_name, hypo_tweet_text):
     """ 
-    Determines which is user is more likle to say a given hypothetical text.
+    Determines which is user is more likely to say a given hypothetical text.
     Example run: predict_user('elonmusk;, 'jackblack', 'Doge to the moon!')
     Return a 0 (user0_name) or a 1 (user1_name).
     """
@@ -21,7 +21,7 @@ def predict_user(user0_name, user1_name, hypo_tweet_text):
     labels = np.concatenate(
         [np.zeros(len(user0.tweets)), np.ones(len(user1.tweets))])
     # Creating and training our model
-    log_reg = LogisticRegression().fit(vects, labels)
+    log_reg = SVC(kernel="linear", C=0.025, random_state=42).fit(vects, labels)
     # vectorizing tweet from nlp model and reshaping for sklearn
     hypo_tweet_vect = vectorize_tweet(hypo_tweet_text).reshape(1, -1)
     return log_reg.predict(hypo_tweet_vect)
