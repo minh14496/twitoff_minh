@@ -6,7 +6,7 @@ from re import L
 from os import getenv
 from .models import DB, Tweet, User
 import tweepy
-import spacy
+# import spacy
 import pickle
 
 
