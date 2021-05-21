@@ -23,7 +23,7 @@ class Tweet(DB.Model):
     # id primary key column for 'tweet'
     id = DB.Column(DB.BigInteger, primary_key=True)
     # text column for 'tweet'
-    text = DB.Column(DB.Unicode(300))
+    text = DB.Column(DB.Unicode(350))
     # stores numbers that represents tweets
     vect = DB.Column(DB.PickleType, nullable=False)
     # user_id foreign key column for 'tweet'

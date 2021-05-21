@@ -3,6 +3,8 @@ import numpy as np
 from sklearn.svm import SVC
 from .models import User
 from .twitter import vectorize_tweet
+
+
 def predict_user(user0_name, user1_name, hypo_tweet_text):
     """ 
     Determines which is user is more likely to say a given hypothetical text.

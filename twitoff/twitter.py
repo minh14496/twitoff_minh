@@ -17,6 +17,15 @@ TWITTER_AUTH = tweepy.OAuthHandler(TWITTER_API_KEY, TWITTER_API_KEY_SECRET)
 api = tweepy.API(TWITTER_AUTH)
 
 
+# ALL OF THESE IN TERMINAL:
+# python -m spacy download en_core_web_sm <-- load python in terminal and install spacy pipeline en_core_web_sm
+# import en_core_web_sm
+# import spacy
+# nlp = en_core_web_sm.load()
+# nlp.to_disk("my_model/") <-- create a folder call my_model/ that have all the models to handle vectorization of text
+# https://spacy.io/usage/models     https://spacy.io/usage/spacy-101
+
+
 # NLP model
 # nlp = spacy.load("my_model") <--- this is without pickle serialization
 nlp_file = open('NLP_spacy', 'rb')
